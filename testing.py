@@ -5,7 +5,7 @@ def generateRandomTests(arrSize, suiteSize, lower, upper):
     """Generates random arrays and keys for random testing and writes them to seperate files"""
     # generate random arrays and keys
     # writing them to file
-    arraysFile = open(f"random{suiteSize}.txt", "w+")
+    arraysFile = open(f"random{arrSize}.txt", "w+")
 
     for i in range(suiteSize):
         arr = [str(randint(lower, upper)) for k in range(arrSize + 1)]
@@ -13,22 +13,22 @@ def generateRandomTests(arrSize, suiteSize, lower, upper):
 
     arraysFile.close()
 
-def runRandomTests(suiteSize):
+def runRandomTests(arrSize):
     """Runs the prepared random tests by reading inputs from files"""
     # read the array items
-    arraysFile = open(f"random{suiteSize}.txt", "r")
+    arraysFile = open(f"random{arrSize}.txt", "r")
     lines = arraysFile.readlines()
     arraysFile.close()
 
-    inputs = [[int(item) for item in array.split(" ")] for array in lines]
+    testCases = [[int(item) for item in array.split(" ")] for array in lines]
 
     # testing the algorithm
     testCount = 0
 
-    for i in range(suiteSize):
+    for tc in testCases:
         testCount += 1
-        arr = inputs[:-1]
-        key = inputs[-1]
+        arr = tc[:-1]
+        key = tc[-1]
 
         if not isMember(arr, key) is (key in arr):
             break
