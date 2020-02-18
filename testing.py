@@ -30,7 +30,10 @@ def runRandomTests(arrSize):
         arr = tc[:-1]
         key = tc[-1]
 
-        if not isMember(arr, key) is (key in arr):
+        oracle = key in arr
+        result = isMember(arr, key)
+
+        if oracle != result:
             break
 
     return testCount
@@ -89,7 +92,10 @@ def runPairwiseTests(noOfInputs):
         arr = tc[:-1]
         key = tc[-1]
 
-        if not isMember(arr, key) is (key in arr):
+        oracle = key in arr
+        result = isMember(arr, key)
+
+        if oracle != result:
             break
 
     return testCount
